@@ -239,31 +239,34 @@ else
 fi
 execute_sudo "apt" "update"
 
-arrow 配置中文
-install_pkg "language-pack-zh-hans"
-if ! locale -a | grep "zh_CN.utf8" &>/dev/null
-then
-  deep_arrow "生成 语言包"
-  # 如果没有生成 zh_CN.utf8 的语言包
-  execute_sudo locale-gen zh_CN.UTF-8
-fi
-if ! grep "export LANG=zh_CN.UTF-8" "${USER_SHELL_ENV_FILE}"&>/dev/null
-then
-  deep_arrow "设置终端为中文"
-  # 如果 ~/.profile 中没有设定语言则设定语言
-  execute_sudo 'echo -e "\n export LANG=zh_CN.UTF-8" >> "${USER_SHELL_ENV_FILE}"'
-  execute source "${USER_SHELL_ENV_FILE}"
-fi
+# ---- OPTIONAL ---
+# arrow 配置中文
+# install_pkg "language-pack-zh-hans"
+# if ! locale -a | grep "zh_CN.utf8" &>/dev/null
+# then
+#   deep_arrow "生成 语言包"
+#   # 如果没有生成 zh_CN.utf8 的语言包
+#   execute_sudo locale-gen zh_CN.UTF-8
+# fi
+# if ! grep "export LANG=zh_CN.UTF-8" "${USER_SHELL_ENV_FILE}"&>/dev/null
+# then
+#   deep_arrow "设置终端为中文"
+#   # 如果 ~/.profile 中没有设定语言则设定语言
+#   execute_sudo 'echo -e "\n export LANG=zh_CN.UTF-8" >> "${USER_SHELL_ENV_FILE}"'
+#   execute source "${USER_SHELL_ENV_FILE}"
+# fi
 
-arrow 安装并配置 git
-install_pkg "git"
-deep_arrow "配置 git"
-execute 'git config --global alias.cam "commit -a -m"'
-execute 'git config --global alias.cm "commit -m"'
-execute 'git config --global alias.pure "pull --rebase"'
-execute 'git config --global alias.lg "log --graph --decorate"'
-execute 'git config --global alias.lg1 "log --graph --pretty=format:''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'' --abbrev-commit --date=relative"'
-execute 'git config --global credential.helper store'
+
+# ---- OPTIONAL ---
+# arrow 安装并配置 git
+# install_pkg "git"
+# deep_arrow "配置 git"
+# execute 'git config --global alias.cam "commit -a -m"'
+# execute 'git config --global alias.cm "commit -m"'
+# execute 'git config --global alias.pure "pull --rebase"'
+# execute 'git config --global alias.lg "log --graph --decorate"'
+# execute 'git config --global alias.lg1 "log --graph --pretty=format:''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'' --abbrev-commit --date=relative"'
+# execute 'git config --global credential.helper store'
 
 arrow 安装 curl wget 并决定地址
 install_pkg "curl"
